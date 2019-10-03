@@ -1,9 +1,3 @@
----
-title: "Constellation Test"
-runtime: shiny
----
-
-
 install.packages("visNetwork")
 install.packages("geomnet")
 rm(list = ls())
@@ -51,16 +45,6 @@ visNetwork(nodes, edges, width = "100%") %>%
   visOptions(highlightNearest = list(enabled = T, degree = 1, hover = T),
              selectedBy = "group") %>% 
   visLayout(randomSeed = 11)
-
-shinyServer(function(input, output) {
-  output$network <- renderVisNetwork({
-    load("nodes.RData")
-    load("edges.RData")
-    
-    visNetwork(nodes, edges) %>%
-      visIgraphLayout()
-  })
-})
 
 shinyUI(
   fluidPage(
